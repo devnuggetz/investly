@@ -7,7 +7,6 @@ const RightModule = () => {
     <View style={styles.container}>
       <RightCard />
       <RightCard />
-      <RightCard />
     </View>
   );
 };

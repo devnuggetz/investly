@@ -11,5 +11,6 @@ const styles = StyleSheet.create({
   safeview: {
     paddingHorizontal: 10,
     paddingTop: Platform.OS === 'ios' ? 40 : 0,
+    backgroundColor: 'white',
   },
 });

@@ -7,8 +7,6 @@ const LeftModule = () => {
     <View style={styles.container}>
       <LeftCard />
       <LeftCard />
-      <LeftCard />
-      <LeftCard />
     </View>
   );
 };
