@@ -8,13 +8,13 @@ const ProgressCard = () => {
     <View style={styles.container}>
       <View style={styles.card}>
         <ProgressCircle
-          percent={30}
+          percent={60}
           radius={30}
           borderWidth={8}
           color={COLORS.primary}
           shadowColor="white"
           bgColor={COLORS.secondary}>
-          <Text style={{fontSize: 12}}>{'30%'}</Text>
+          <Text style={{fontSize: 12}}>{'60%'}</Text>
         </ProgressCircle>
         <Text style={styles.motiv}>Great going, keep learning</Text>
       </View>

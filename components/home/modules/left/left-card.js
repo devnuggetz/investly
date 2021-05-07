@@ -38,6 +38,11 @@ const styles = StyleSheet.create({
     height: '60%',
     bottom: 0,
   },
+  subtitle: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: 'white',
+  },
   text: {
     position: 'absolute',
     textAlign: 'right',

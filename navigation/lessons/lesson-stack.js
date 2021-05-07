@@ -2,6 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Lesson from '../../components/lesson';
 import Home from '../../screens/home';
+import Start from '../../components/lesson/start';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,11 @@ export default function LessonStack() {
       <Stack.Screen
         name="Lesson Landing"
         component={Lesson}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Lesson Start"
+        component={Start}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
