@@ -6,8 +6,13 @@ const TitleCard = ({navigation}) => {
     <TouchableOpacity
       style={styles.container}
       onPress={() => navigation.navigate('Lesson Start')}>
-      <Text style={styles.title}>This is title</Text>
-      <Text style={styles.subtitle}>This is Subtitle</Text>
+      <View>
+        <Text style={styles.title}>This is title</Text>
+        <Text style={styles.subtitle}>This is Subtitle</Text>
+      </View>
+      <View>
+        <Text>continue</Text>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -20,6 +25,9 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 12,
     borderRadius: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   subtitle: {
     fontSize: 12,

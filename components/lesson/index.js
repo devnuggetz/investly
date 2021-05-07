@@ -9,8 +9,8 @@ const Lesson = ({navigation}) => {
     <Safeview>
       <Head navigation={navigation} />
       <View style={styles.desc}>
-        <Text>Know the market</Text>
-        <Text>
+        <Text style={styles.title}>Know the market</Text>
+        <Text style={styles.subtitle}>
           This module will give you the basic idea about stock market, how it
           funcitons and who runs the market. This will form a foundation for you
           to learn further.
@@ -30,8 +30,18 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     paddingLeft: 16,
   },
+  subtitle: {
+    fontWeight: '500',
+    fontSize: 14,
+    color: 'gray',
+  },
   timeline: {
     flex: 1,
     width: '100%',
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginVertical: 12,
   },
 });

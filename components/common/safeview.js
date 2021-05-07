@@ -1,8 +1,9 @@
 import React from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
-const Safeview = ({children}) => {
-  return <View style={styles.safeview}>{children}</View>;
+const Safeview = ({children, style}) => {
+  console.log(style);
+  return <View style={[styles.safeview, style]}>{children}</View>;
 };
 
 export default Safeview;
@@ -10,7 +11,7 @@ export default Safeview;
 const styles = StyleSheet.create({
   safeview: {
     paddingHorizontal: 10,
-    paddingTop: Platform.OS === 'ios' ? 40 : 0,
+    paddingTop: Platform.OS === 'ios' ? 60 : 20,
     backgroundColor: 'white',
     flex: 1,
   },
