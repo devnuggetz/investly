@@ -84,7 +84,7 @@ const BottomTabs = () => {
           }
         },
       })}>
-      <Tab.Screen name="Home" component={LessonStack} />
+      <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Bookmarks" component={Bookmarks} />
       <Tab.Screen name="Profile" component={Profile} />

@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
   chapter: {
     marginBottom: 16,
     fontSize: 18,
+    color: 'grey',
   },
   container: {},
   heading: {
