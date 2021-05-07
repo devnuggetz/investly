@@ -29,16 +29,16 @@ const Quiz = ({navigation}) => {
     setQues(1);
   };
   const handle1 = () => {
-    setSelected('Option 1');
+    setSelected(data[ques - 1].options[0]);
   };
   const handle2 = () => {
-    setSelected('Option 2');
+    setSelected(data[ques - 1].options[1]);
   };
   const handle3 = () => {
-    setSelected('Option 3');
+    setSelected(data[ques - 1].options[2]);
   };
   const handle4 = () => {
-    setSelected('Option 4');
+    setSelected(data[ques - 1].options[3]);
   };
 
   const data = [
@@ -137,7 +137,7 @@ const Quiz = ({navigation}) => {
 
       <View style={styles.question}>
         <Text style={styles.questionText}>
-          What is apple in your opinion young old man and woman?
+          What is the meaning of {data[ques - 1].word}?
         </Text>
       </View>
       <View style={styles.options}>
@@ -145,33 +145,45 @@ const Quiz = ({navigation}) => {
           <View
             style={[
               styles.check,
-              {backgroundColor: selected === 'Option 1' ? 'green' : 'gray'},
+              {
+                backgroundColor:
+                  selected === data[ques - 1].options[0] ? 'green' : 'gray',
+              },
             ]}></View>
-          <Text>Option 1</Text>
+          <Text>{data[ques - 1].options[0]}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option} onPress={handle2}>
           <View
             style={[
               styles.check,
-              {backgroundColor: selected === 'Option 2' ? 'green' : 'gray'},
+              {
+                backgroundColor:
+                  selected === data[ques - 1].options[1] ? 'green' : 'gray',
+              },
             ]}></View>
-          <Text>Option 2</Text>
+          <Text>{data[ques - 1].options[1]}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option} onPress={handle3}>
           <View
             style={[
               styles.check,
-              {backgroundColor: selected === 'Option 3' ? 'green' : 'gray'},
+              {
+                backgroundColor:
+                  selected === data[ques - 1].options[2] ? 'green' : 'gray',
+              },
             ]}></View>
-          <Text>Option 3</Text>
+          <Text>{data[ques - 1].options[2]}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option} onPress={handle4}>
           <View
             style={[
               styles.check,
-              {backgroundColor: selected === 'Option 4' ? 'green' : 'gray'},
+              {
+                backgroundColor:
+                  selected === data[ques - 1].options[3] ? 'green' : 'gray',
+              },
             ]}></View>
-          <Text>Option 4</Text>
+          <Text>{data[ques - 1].options[3]}</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.bottom}>
