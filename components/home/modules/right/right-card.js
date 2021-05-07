@@ -1,17 +1,23 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS, images} from '../../../../constants';
 
-const RightCard = () => {
+const RightCard = ({navigation}) => {
   return (
-    <View style={styles.container}>
-      <Text>This is right card</Text>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('Lesson Landing')}>
+      <View style={styles.text}>
+        <Text style={styles.title}>What is stock market?</Text>
+        <Text style={styles.subtitle}>12 lessons</Text>
+      </View>
+
       <Image
         source={images.flyImage}
         resizeMode="contain"
         style={styles.image}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -31,6 +37,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: '60%',
     bottom: 0,
+  },
+  subtitle: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: 'white',
   },
   text: {
     position: 'absolute',

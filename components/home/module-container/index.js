@@ -3,12 +3,12 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import LeftModule from '../modules/left';
 import RightModule from '../modules/right';
 
-const ModuleContainer = () => {
+const ModuleContainer = ({navigation}) => {
   return (
     <ScrollView style={{width: '100%'}}>
       <View style={styles.container}>
-        <LeftModule />
-        <RightModule />
+        <LeftModule navigation={navigation} />
+        <RightModule navigation={navigation} />
       </View>
     </ScrollView>
   );

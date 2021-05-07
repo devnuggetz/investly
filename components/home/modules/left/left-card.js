@@ -1,21 +1,22 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS, images} from '../../../../constants';
 
-const LeftCard = () => {
+const LeftCard = ({navigation}) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('Lesson Landing')}>
       <View style={styles.text}>
         <Text style={styles.title}>What is stock market?</Text>
         <Text style={styles.subtitle}>12 lessons</Text>
       </View>
-
       <Image
         source={images.thinkImage}
         resizeMode="contain"
         style={styles.image}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 

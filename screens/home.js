@@ -4,12 +4,12 @@ import Safeview from '../components/common/safeview';
 import ModuleContainer from '../components/home/module-container';
 import ProgressCard from '../components/home/progress-card';
 
-const Home = () => {
+const Home = ({navigation}) => {
   return (
     <Safeview>
       <Text style={styles.welcome}>Hey Shuvam!</Text>
       <ProgressCard />
-      <ModuleContainer />
+      <ModuleContainer navigation={navigation} />
     </Safeview>
   );
 };

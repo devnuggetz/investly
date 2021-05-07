@@ -6,6 +6,7 @@ import Profile from '../../screens/profile';
 import Bookmarks from '../../screens/bookmarks';
 import {icons, COLORS} from '../../constants';
 import Search from '../../screens/search';
+import LessonStack from '../lessons/lesson-stack';
 const Tab = createBottomTabNavigator();
 
 const tabOptions = {
@@ -83,7 +84,7 @@ const BottomTabs = () => {
           }
         },
       })}>
-      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Home" component={LessonStack} />
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Bookmarks" component={Bookmarks} />
       <Tab.Screen name="Profile" component={Profile} />

@@ -2,11 +2,11 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import RightCard from './right-card';
 
-const RightModule = () => {
+const RightModule = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <RightCard />
-      <RightCard />
+      <RightCard navigation={navigation} />
+      <RightCard navigation={navigation} />
     </View>
   );
 };
