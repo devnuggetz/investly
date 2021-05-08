@@ -4,35 +4,38 @@ import Head from '../common/head';
 import Safeview from '../common/safeview';
 import Topic from './topic';
 import Modal from 'react-native-modal';
+import Popup from './popup';
 
 const Start = ({navigation}) => {
   const [page, setPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const data = [
     {
-      topic: 'Hello Hello 1',
+      topic: 'What are the things to know before investing',
       description:
         'Khkjhkhkjhjhjh h jdfhg fgdhjgf hgfhjdg fdgfhjsg dhfg jhsg fhjdg fhjdg fhjg hs',
+      content:
+        'Investments optimally should have a strong mix of all asset classes. It is smart to diversify your investment among the various asset classes. The technique of allocating money across assets classes is termed as ‘Asset Allocation’. For instance, a young professional may take a higher amount of risk given his age and years of investment available to him. Typically investors should allocate around 70% of their investable amount in Equity, 20% in Precious metals, and the rest in Fixed income investments. Alongside the same rationale, a retired person could invest 80 per cent of his saving in fixed income, 10 per cent in equity markets and 10 per cent in precious metals. The ratio in which one allocates investments across asset classes depends on the investor’s risk appetite.',
+      image:
+        'https://zerodha.com/varsity/wp-content/uploads/2014/07/Ch1-title1.jpg',
     },
     {
-      topic: 'Hello Hello 2',
+      topic: 'What are the things to know before investing',
       description:
         'Khkjhkhkjhjhjh h jdfhg fgdhjgf hgfhjdg fdgfhjsg dhfg jhsg fhjdg fhjdg fhjg hs',
+      content:
+        'Investments optimally should have a strong mix of all asset classes. It is smart to diversify your investment among the various asset classes. The technique of allocating money across assets classes is termed as ‘Asset Allocation’. For instance, a young professional may take a higher amount of risk given his age and years of investment available to him. Typically investors should allocate around 70% of their investable amount in Equity, 20% in Precious metals, and the rest in Fixed income investments. Alongside the same rationale, a retired person could invest 80 per cent of his saving in fixed income, 10 per cent in equity markets and 10 per cent in precious metals. The ratio in which one allocates investments across asset classes depends on the investor’s risk appetite.',
+      image:
+        'https://zerodha.com/varsity/wp-content/uploads/2014/07/Ch1-title1.jpg',
     },
     {
-      topic: 'Hello Hello 3',
+      topic: 'What are the things to know before investing',
       description:
         'Khkjhkhkjhjhjh h jdfhg fgdhjgf hgfhjdg fdgfhjsg dhfg jhsg fhjdg fhjdg fhjg hs',
-    },
-    {
-      topic: 'Hello Hello 4',
-      description:
-        'Khkjhkhkjhjhjh h jdfhg fgdhjgf hgfhjdg fdgfhjsg dhfg jhsg fhjdg fhjdg fhjg hs',
-    },
-    {
-      topic: 'Hello Hello 5',
-      description:
-        'Khkjhkhkjhjhjh h jdfhg fgdhjgf hgfhjdg fdgfhjsg dhfg jhsg fhjdg fhjdg fhjg hs',
+      content:
+        'Investments optimally should have a strong mix of all asset classes. It is smart to diversify your investment among the various asset classes. The technique of allocating money across assets classes is termed as ‘Asset Allocation’. For instance, a young professional may take a higher amount of risk given his age and years of investment available to him. Typically investors should allocate around 70% of their investable amount in Equity, 20% in Precious metals, and the rest in Fixed income investments. Alongside the same rationale, a retired person could invest 80 per cent of his saving in fixed income, 10 per cent in equity markets and 10 per cent in precious metals. The ratio in which one allocates investments across asset classes depends on the investor’s risk appetite.',
+      image:
+        'https://zerodha.com/varsity/wp-content/uploads/2014/07/Ch1-title1.jpg',
     },
   ];
   const handleNext = () => {
@@ -55,16 +58,7 @@ const Start = ({navigation}) => {
   return (
     <Safeview style={styles.container}>
       <Modal isVisible={showModal}>
-        <View style={styles.modal}>
-          <Text>Great Job! You just completed this lesson.</Text>
-          <Text>Now take this quiz to test your knowledge. 😀 </Text>
-          <TouchableOpacity onPress={handleAgain}>
-            <Text>Read Again</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleQuiz}>
-            <Text>Take Quiz</Text>
-          </TouchableOpacity>
-        </View>
+        <Popup handleAgain={handleAgain} handleQuiz={handleQuiz} />
       </Modal>
       <View style={styles.heading}>
         <Head navigation={navigation} />
@@ -123,12 +117,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  modal: {
-    backgroundColor: 'white',
-    padding: 24,
-    height: '40%',
-    borderRadius: 12,
-  },
+
   next: {
     position: 'absolute',
     right: 12,

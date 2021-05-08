@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Safeview from '../common/safeview';
 import Modal from 'react-native-modal';
+import Popup from './popup';
 
 const Quiz = ({navigation}) => {
   const [selected, setSelected] = useState('');
@@ -130,16 +131,7 @@ const Quiz = ({navigation}) => {
   return (
     <Safeview style={styles.container}>
       <Modal isVisible={showModal}>
-        <View style={styles.modal}>
-          <Text>Well Done upon completing the quiz.</Text>
-          <Text>You scored 5/10. 😀 </Text>
-          <TouchableOpacity onPress={handleAgain}>
-            <Text>Attempt Again</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleQuiz}>
-            <Text>Continue</Text>
-          </TouchableOpacity>
-        </View>
+        <Popup handleAgain={handleAgain} handleQuiz={handleQuiz} />
       </Modal>
       <View style={styles.count}>
         <Text style={styles.number}>
@@ -260,12 +252,6 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'flex-end',
     flexDirection: 'row',
-  },
-  modal: {
-    backgroundColor: 'white',
-    padding: 24,
-    height: '40%',
-    borderRadius: 12,
   },
   number: {
     fontSize: 24,
