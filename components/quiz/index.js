@@ -11,10 +11,6 @@ const Quiz = ({navigation}) => {
   const [ans, setAns] = useState([]);
   const handleNext = () => {
     setQues(ques + 1);
-    // const temp = ans;
-    // if (selected !== '') temp[ques - 1] = selected;
-    // setAns(temp);
-    // setSelected('');
   };
   const handlePrevious = () => {
     setQues(ques - 1);
@@ -212,18 +208,24 @@ const Quiz = ({navigation}) => {
       </View>
       <View style={styles.bottom}>
         {ques !== 1 && (
-          <TouchableOpacity onPress={handlePrevious}>
-            <Text>Previous</Text>
-          </TouchableOpacity>
+          <View style={styles.previous}>
+            <TouchableOpacity onPress={handlePrevious}>
+              <Text>Previous</Text>
+            </TouchableOpacity>
+          </View>
         )}
         {ques !== data.length ? (
-          <TouchableOpacity onPress={handleNext}>
-            <Text>Next</Text>
-          </TouchableOpacity>
+          <View style={styles.next}>
+            <TouchableOpacity onPress={handleNext}>
+              <Text>Next</Text>
+            </TouchableOpacity>
+          </View>
         ) : (
-          <TouchableOpacity onPress={handleEnd}>
-            <Text>End</Text>
-          </TouchableOpacity>
+          <View style={styles.next}>
+            <TouchableOpacity onPress={handleEnd}>
+              <Text>End</Text>
+            </TouchableOpacity>
+          </View>
         )}
       </View>
     </Safeview>
@@ -244,6 +246,7 @@ const styles = StyleSheet.create({
     shadowRadius: 13.97,
     elevation: 21,
     position: 'relative',
+    bottom: 0,
   },
   check: {
     height: 15,
@@ -271,6 +274,17 @@ const styles = StyleSheet.create({
   option: {
     padding: 18,
     flexDirection: 'row',
+    shadowColor: '#FAF8FF',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 1.48,
+    elevation: 2,
+    marginVertical: 6,
+    backgroundColor: '#FAF8FF',
+    borderRadius: 12,
   },
   options: {
     paddingVertical: 24,
@@ -278,6 +292,7 @@ const styles = StyleSheet.create({
   },
   question: {
     width: '80%',
+    height: '10%',
   },
   questionText: {
     fontSize: 18,
