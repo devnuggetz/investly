@@ -1,11 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Safeview from '../common/safeview';
 
-const Example = () => {
+const Example = ({navigation}) => {
   return (
     <Safeview>
       <Text>This is example screen</Text>
+      <TouchableOpacity onPress={() => navigation.pop()}>
+        <Text>click</Text>
+      </TouchableOpacity>
     </Safeview>
   );
 };
