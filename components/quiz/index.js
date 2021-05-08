@@ -4,6 +4,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Safeview from '../common/safeview';
 import Modal from 'react-native-modal';
 import Popup from './popup';
+import BottomButton from '../common/buttons/bottom-button';
 
 const Quiz = ({navigation}) => {
   const [selected, setSelected] = useState('');
@@ -201,24 +202,17 @@ const Quiz = ({navigation}) => {
       <View style={styles.bottom}>
         {ques !== 1 && (
           <View style={styles.previous}>
-            <TouchableOpacity onPress={handlePrevious}>
-              <Text>Previous</Text>
-            </TouchableOpacity>
+            <BottomButton onPress={handlePrevious} text="PREVIOUS" />
           </View>
         )}
-        {ques !== data.length ? (
-          <View style={styles.next}>
-            <TouchableOpacity onPress={handleNext}>
-              <Text>Next</Text>
-            </TouchableOpacity>
-          </View>
-        ) : (
-          <View style={styles.next}>
-            <TouchableOpacity onPress={handleEnd}>
-              <Text>End</Text>
-            </TouchableOpacity>
-          </View>
-        )}
+
+        <View style={styles.next}>
+          {ques !== data.length ? (
+            <BottomButton onPress={handleNext} text="NEXT" />
+          ) : (
+            <BottomButton onPress={handleEnd} text="END" />
+          )}
+        </View>
       </View>
     </Safeview>
   );
@@ -234,8 +228,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 10,
     },
-    shadowOpacity: 0.53,
-    shadowRadius: 13.97,
+    shadowOpacity: 0.21,
+    shadowRadius: 10,
     elevation: 21,
     position: 'relative',
     bottom: 0,

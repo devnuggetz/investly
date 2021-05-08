@@ -5,6 +5,7 @@ import Safeview from '../common/safeview';
 import Topic from './topic';
 import Modal from 'react-native-modal';
 import Popup from './popup';
+import BottomButton from '../common/buttons/bottom-button';
 
 const Start = ({navigation}) => {
   const [page, setPage] = useState(1);
@@ -69,19 +70,18 @@ const Start = ({navigation}) => {
       </View>
       <View style={styles.bottom}>
         {page !== 1 && (
-          <TouchableOpacity onPress={handlePrevious} style={styles.previous}>
-            <Text>Previous</Text>
-          </TouchableOpacity>
+          <View style={styles.previous}>
+            <BottomButton onPress={handlePrevious} text="PREVIOUS" />
+          </View>
         )}
-        {page !== data.length ? (
-          <TouchableOpacity onPress={handleNext} style={styles.next}>
-            <Text>Next</Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={handleEnd} style={styles.next}>
-            <Text>End</Text>
-          </TouchableOpacity>
-        )}
+
+        <View style={styles.next}>
+          {page !== data.length ? (
+            <BottomButton onPress={handleNext} text="NEXT" />
+          ) : (
+            <BottomButton onPress={handleEnd} text="END" />
+          )}
+        </View>
       </View>
     </Safeview>
   );
@@ -97,8 +97,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 10,
     },
-    shadowOpacity: 0.53,
-    shadowRadius: 13.97,
+    shadowOpacity: 0.21,
+    shadowRadius: 10,
     elevation: 21,
     position: 'relative',
   },
