@@ -1,6 +1,7 @@
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import global from '../reducers/global';
+import moduleReducer from '../reducers/module';
 import {globalSaga} from '../sagas/global';
 
 const sagas = function* sagas() {
@@ -8,6 +9,7 @@ const sagas = function* sagas() {
 };
 const rootReducer = combineReducers({
   global: global,
+  module: moduleReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

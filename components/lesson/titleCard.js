@@ -1,14 +1,15 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-const TitleCard = ({navigation}) => {
+const TitleCard = ({navigation, item}) => {
+  console.log(item);
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={() => navigation.navigate('Lesson Start')}>
       <View>
-        <Text style={styles.title}>This is title</Text>
-        <Text style={styles.subtitle}>This is Subtitle</Text>
+        <Text style={styles.title}>{item.submoduleTitle}</Text>
+        <Text style={styles.subtitle}>{item.submoduleSubtitle}</Text>
       </View>
       <View>
         <Text>continue</Text>

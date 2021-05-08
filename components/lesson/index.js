@@ -4,7 +4,7 @@ import Head from '../common/head';
 import Safeview from '../common/safeview';
 import Overview from './overview';
 
-const Lesson = ({navigation}) => {
+const Lesson = ({navigation, route}) => {
   return (
     <Safeview>
       <Head navigation={navigation} />

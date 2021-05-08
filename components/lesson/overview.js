@@ -1,10 +1,21 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import TitleCard from './titleCard';
 import Timeline from 'react-native-timeline-flatlist';
+import {connect} from 'react-redux';
 
-const Overview = ({navigation}) => {
-  const data = [
+const Overview = ({navigation, module}) => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const temp = [];
+    module.submodule.map(item => {
+      temp.push({
+        description: <TitleCard navigation={navigation} item={item} />,
+      });
+    });
+    setData(temp);
+  }, []);
+  const data1 = [
     {
       description: <TitleCard navigation={navigation} />,
     },
@@ -16,21 +27,30 @@ const Overview = ({navigation}) => {
     },
   ];
   return (
-    <Timeline
-      circleSize={20}
-      separator={false}
-      circleColor="blue"
-      lineColor="gray"
-      descriptionStyle={styles.description}
-      style={styles.list}
-      data={data}
-      showTime={false}
-      detailContainerStyle={styles.topic}
-    />
+    data.length > 0 && (
+      <Timeline
+        circleSize={20}
+        separator={false}
+        circleColor="blue"
+        lineColor="gray"
+        descriptionStyle={styles.description}
+        style={styles.list}
+        data={data}
+        showTime={false}
+        detailContainerStyle={styles.topic}
+      />
+    )
   );
 };
 
-export default Overview;
+const mapStateToProps = ({module}) => {
+  console.log(module);
+  return {
+    module: module.currentModule,
+  };
+};
+
+export default connect(mapStateToProps)(Overview);
 
 const styles = StyleSheet.create({
   list: {
