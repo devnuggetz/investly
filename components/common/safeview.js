@@ -2,7 +2,6 @@ import React from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
 const Safeview = ({children, style}) => {
-  console.log(style);
   return <View style={[styles.safeview, style]}>{children}</View>;
 };
 

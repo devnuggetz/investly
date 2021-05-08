@@ -8,10 +8,13 @@ const Quiz = ({navigation}) => {
   const [selected, setSelected] = useState('');
   const [ques, setQues] = useState(1);
   const [showModal, setShowModal] = useState(false);
-
+  const [ans, setAns] = useState([]);
   const handleNext = () => {
-    console.log('Next');
     setQues(ques + 1);
+    // const temp = ans;
+    // if (selected !== '') temp[ques - 1] = selected;
+    // setAns(temp);
+    // setSelected('');
   };
   const handlePrevious = () => {
     setQues(ques - 1);
@@ -27,18 +30,31 @@ const Quiz = ({navigation}) => {
   const handleAgain = () => {
     setShowModal(!showModal);
     setQues(1);
+    setAns([]);
   };
   const handle1 = () => {
     setSelected(data[ques - 1].options[0]);
+    const temp = ans;
+    temp[ques - 1] = data[ques - 1].options[0];
+    setAns(temp);
   };
   const handle2 = () => {
     setSelected(data[ques - 1].options[1]);
+    const temp = ans;
+    temp[ques - 1] = data[ques - 1].options[1];
+    setAns(temp);
   };
   const handle3 = () => {
     setSelected(data[ques - 1].options[2]);
+    const temp = ans;
+    temp[ques - 1] = data[ques - 1].options[2];
+    setAns(temp);
   };
   const handle4 = () => {
     setSelected(data[ques - 1].options[3]);
+    const temp = ans;
+    temp[ques - 1] = data[ques - 1].options[3];
+    setAns(temp);
   };
 
   const data = [
@@ -147,7 +163,9 @@ const Quiz = ({navigation}) => {
               styles.check,
               {
                 backgroundColor:
-                  selected === data[ques - 1].options[0] ? 'green' : 'gray',
+                  ans[ques - 1] === data[ques - 1].options[0]
+                    ? 'green'
+                    : 'gray',
               },
             ]}></View>
           <Text>{data[ques - 1].options[0]}</Text>
@@ -158,7 +176,9 @@ const Quiz = ({navigation}) => {
               styles.check,
               {
                 backgroundColor:
-                  selected === data[ques - 1].options[1] ? 'green' : 'gray',
+                  ans[ques - 1] === data[ques - 1].options[1]
+                    ? 'green'
+                    : 'gray',
               },
             ]}></View>
           <Text>{data[ques - 1].options[1]}</Text>
@@ -169,7 +189,9 @@ const Quiz = ({navigation}) => {
               styles.check,
               {
                 backgroundColor:
-                  selected === data[ques - 1].options[2] ? 'green' : 'gray',
+                  ans[ques - 1] === data[ques - 1].options[2]
+                    ? 'green'
+                    : 'gray',
               },
             ]}></View>
           <Text>{data[ques - 1].options[2]}</Text>
@@ -180,7 +202,9 @@ const Quiz = ({navigation}) => {
               styles.check,
               {
                 backgroundColor:
-                  selected === data[ques - 1].options[3] ? 'green' : 'gray',
+                  ans[ques - 1] === data[ques - 1].options[3]
+                    ? 'green'
+                    : 'gray',
               },
             ]}></View>
           <Text>{data[ques - 1].options[3]}</Text>
