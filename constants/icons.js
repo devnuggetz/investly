@@ -6,6 +6,7 @@ const menu = require('../assets/icons/menu_icon.png');
 const search = require('../assets/icons/search_icon.png');
 const user = require('../assets/icons/user_icon.png');
 const close = require('../assets/icons/close.png');
+const target = require('../assets/icons/target.png');
 
 export default {
   back,
@@ -16,4 +17,5 @@ export default {
   search,
   user,
   close,
+  target,
 };
