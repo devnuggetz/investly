@@ -1,7 +1,8 @@
-import {SET_CURRENT_MODULE} from '../../actionTypes/module';
+import {SET_CURRENT_MODULE, SET_CURRENT_TOPIC} from '../../actionTypes/module';
 
 const initState = {
   currentModule: {},
+  currentTopic: {},
 };
 
 export default function moduleReducer(state = initState, action) {
@@ -12,6 +13,13 @@ export default function moduleReducer(state = initState, action) {
       return {
         ...state,
         currentModule: data,
+      };
+    }
+    case SET_CURRENT_TOPIC: {
+      const {data} = action;
+      return {
+        ...state,
+        currentTopic: data,
       };
     }
     default: {

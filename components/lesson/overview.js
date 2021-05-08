@@ -8,24 +8,17 @@ const Overview = ({navigation, module}) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const temp = [];
-    module.submodule.map(item => {
-      temp.push({
-        description: <TitleCard navigation={navigation} item={item} />,
-      });
-    });
+    {
+      module.submodule &&
+        module.submodule.map(item => {
+          temp.push({
+            description: <TitleCard navigation={navigation} item={item} />,
+          });
+        });
+    }
     setData(temp);
-  }, []);
-  const data1 = [
-    {
-      description: <TitleCard navigation={navigation} />,
-    },
-    {
-      description: <TitleCard navigation={navigation} />,
-    },
-    {
-      description: <TitleCard navigation={navigation} />,
-    },
-  ];
+  }, [module]);
+
   return (
     data.length > 0 && (
       <Timeline
@@ -44,7 +37,6 @@ const Overview = ({navigation, module}) => {
 };
 
 const mapStateToProps = ({module}) => {
-  console.log(module);
   return {
     module: module.currentModule,
   };

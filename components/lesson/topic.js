@@ -1,19 +1,23 @@
 import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import HTML from 'react-native-render-html';
 import ExampleButton from '../common/buttons/example-button';
 
 const Topic = ({data, navigation}) => {
+  console.log(data.topicImage);
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.top}>
-        <Text style={styles.topic}>{data.topic}</Text>
+        <Text style={styles.topic}>{data.topicTitle}</Text>
       </View>
       <Image
-        source={{uri: data.image}}
+        source={{
+          uri: data.topicImage,
+        }}
         style={styles.banner}
         resizeMode="contain"
       />
-      <Text style={styles.content}>{data.content}</Text>
+      <HTML source={{html: data.content}} />
       {data.example && (
         <View style={styles.example}>
           <Text style={styles.exampleTitle}>
@@ -34,6 +38,7 @@ export default Topic;
 const styles = StyleSheet.create({
   banner: {
     height: 200,
+    marginVertical: 8,
   },
   container: {
     paddingHorizontal: 16,

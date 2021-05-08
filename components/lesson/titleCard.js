@@ -1,12 +1,15 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {connect} from 'react-redux';
+import {setCurrentTopic} from '../../redux/actions/module';
 
-const TitleCard = ({navigation, item}) => {
-  console.log(item);
+const TitleCard = ({navigation, item, setCurrentTopic}) => {
+  const handleClick = () => {
+    setCurrentTopic(item);
+    navigation.navigate('Lesson Start');
+  };
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => navigation.navigate('Lesson Start')}>
+    <TouchableOpacity style={styles.container} onPress={handleClick}>
       <View>
         <Text style={styles.title}>{item.submoduleTitle}</Text>
         <Text style={styles.subtitle}>{item.submoduleSubtitle}</Text>
@@ -18,7 +21,16 @@ const TitleCard = ({navigation, item}) => {
   );
 };
 
-export default TitleCard;
+const mapStateToProps = () => {
+  return {};
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    setCurrentTopic: data => dispatch(setCurrentTopic(data)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TitleCard);
 
 const styles = StyleSheet.create({
   container: {
