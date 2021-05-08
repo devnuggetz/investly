@@ -146,6 +146,12 @@ android {
         }
     }
     signingConfigs {
+        release {
+      storeFile file('your_key_name.keystore')
+      storePassword 'drake564'
+      keyAlias 'your_key_alias'
+      keyPassword 'drake564'
+    }
         debug {
             storeFile file('debug.keystore')
             storePassword 'android'
