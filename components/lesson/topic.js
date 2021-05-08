@@ -1,10 +1,15 @@
 import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import HTML from 'react-native-render-html';
+import {connect} from 'react-redux';
+import {setCurrentExample, testing} from '../../redux/actions/module';
 import ExampleButton from '../common/buttons/example-button';
 
-const Topic = ({data, navigation}) => {
-  console.log(data.topicImage);
+const Topic = ({data, navigation, setCurrentExample}) => {
+  const handleExample = () => {
+    setCurrentExample(data.example);
+    navigation.push('Example');
+  };
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.top}>
@@ -23,17 +28,21 @@ const Topic = ({data, navigation}) => {
           <Text style={styles.exampleTitle}>
             Read this example to get a better understanding of the topic
           </Text>
-          <ExampleButton
-            text="Read Example"
-            onPress={() => navigation.push('Example')}
-          />
+          <ExampleButton text="Read Example" onPress={handleExample} />
         </View>
       )}
     </ScrollView>
   );
 };
-
-export default Topic;
+const mapStateToProps = () => {
+  return {};
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    setCurrentExample: data => dispatch(setCurrentExample(data)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Topic);
 
 const styles = StyleSheet.create({
   banner: {

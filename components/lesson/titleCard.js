@@ -10,7 +10,7 @@ const TitleCard = ({navigation, item, setCurrentTopic}) => {
   };
   return (
     <TouchableOpacity style={styles.container} onPress={handleClick}>
-      <View>
+      <View style={styles.left}>
         <Text style={styles.title}>{item.submoduleTitle}</Text>
         <Text style={styles.subtitle}>{item.submoduleSubtitle}</Text>
       </View>
@@ -41,6 +41,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  left: {
+    width: '75%',
   },
   subtitle: {
     fontSize: 12,
