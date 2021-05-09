@@ -85,7 +85,7 @@ const BuyStock = ({navigation, route}) => {
           <Image source={icons.back} style={styles.backIcon} />
         </TouchableOpacity>
       </View>
-      <ScrollView style={styles.stock}>
+      <ScrollView style={styles.stock} showsVerticalScrollIndicator={false}>
         <View style={styles.head}>
           <Image
             style={styles.companyLogo}

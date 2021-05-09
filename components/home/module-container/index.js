@@ -5,7 +5,7 @@ import RightModule from '../modules/right';
 
 const ModuleContainer = ({navigation}) => {
   return (
-    <ScrollView style={{width: '100%'}}>
+    <ScrollView style={{width: '100%'}} showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <LeftModule navigation={navigation} />
         <RightModule navigation={navigation} />

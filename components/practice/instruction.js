@@ -33,7 +33,10 @@ const Instruction = ({route, navigation}) => {
           resizeMode="contain"
         />
         <HTML source={{html: task.instruction}} />
-        <StartButton onPress={() => navigation.navigate(task.nav)} />
+        <StartButton
+          onPress={() => navigation.navigate(task.nav)}
+          text="START"
+        />
       </ScrollView>
     </Safeview>
   );
