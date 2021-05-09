@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {
   Image,
   ScrollView,
@@ -12,7 +12,6 @@ import {icons} from '../../constants';
 import Safeview from '../common/safeview';
 
 const Instruction = ({route, navigation}) => {
-  console.log(navigation);
   const task = route.params.task;
   return (
     <Safeview style={styles.container}>
