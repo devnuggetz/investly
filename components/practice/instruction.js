@@ -10,6 +10,7 @@ import {
 import HTML from 'react-native-render-html';
 import {icons} from '../../constants';
 import Safeview from '../common/safeview';
+import StartButton from './startButton';
 
 const Instruction = ({route, navigation}) => {
   const task = route.params.task;
@@ -32,6 +33,7 @@ const Instruction = ({route, navigation}) => {
           resizeMode="contain"
         />
         <HTML source={{html: task.instruction}} />
+        <StartButton onPress={() => navigation.navigate(task.nav)} />
       </ScrollView>
     </Safeview>
   );
