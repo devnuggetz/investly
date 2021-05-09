@@ -3,10 +3,10 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {COLORS, images} from '../../constants';
 
-const TaskCard = ({task}) => {
-  const title = task.title;
+const TaskCard = ({task, navigation}) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('Instruction', {task})}>
       <View style={styles.container}>
         <View style={styles.top}>
           <Text style={styles.title}>{task.title}</Text>

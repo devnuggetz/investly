@@ -3,7 +3,7 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import TaskCard from './taskCard';
 import {practiceData} from '../../data/practice';
 
-const Section = ({level}) => {
+const Section = ({level, navigation}) => {
   const tasks = practiceData[level];
 
   return (
@@ -18,7 +18,9 @@ const Section = ({level}) => {
         style={styles.tasks}
         showsHorizontalScrollIndicator={false}>
         {tasks.map(item => {
-          return <TaskCard key={item.taskId} task={item} />;
+          return (
+            <TaskCard key={item.taskId} task={item} navigation={navigation} />
+          );
         })}
       </ScrollView>
     </View>
