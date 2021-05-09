@@ -8,17 +8,10 @@ import {
   View,
 } from 'react-native';
 
-// import {
-//   VictoryScatter,
-//   VictoryLine,
-//   VictoryChart,
-//   VictoryAxis,
-//   VictoryVoronoiContainer,
-// } from 'victory-native';
-// import {victoryTheme} from '../styles';
-// import PriceChart from '../components/priceChart';
 import Safeview from '../../../common/safeview';
 import {icons} from '../../../../constants';
+import PriceChart from './price-chart';
+import StartButton from '../../startButton';
 const BuyStock = ({navigation, route}) => {
   const [currentPrice, setCurrentPrice] = useState();
   const [dayChange, setDayChange] = useState();
@@ -91,118 +84,107 @@ const BuyStock = ({navigation, route}) => {
   }, []);
   return (
     // copying from groww
-    <View style={styles.container}>
-      <Safeview>
-        <View style={styles.navigatior}>
-          {/* back icon */}
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image source={icons.back} style={styles.backIcon} />
-          </TouchableOpacity>
+    <Safeview style={styles.container}>
+      <View style={styles.navigatior}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image source={icons.back} style={styles.backIcon} />
+        </TouchableOpacity>
+      </View>
+      <ScrollView style={styles.stock}>
+        <View style={styles.head}>
+          <Image
+            style={styles.companyLogo}
+            source={{
+              uri: `https://assets-netstorage.groww.in/stock-assets/logos/INE155A01022.png`,
+            }}
+          />
+          <View style={styles.headTitle}>
+            <Text style={styles.symbol}>Tata Motors</Text>
+            <Text style={styles.companyName}>Tata Motors</Text>
+          </View>
         </View>
-        <ScrollView>
-          <View style={styles.head}>
-            <Image
-              style={styles.companyLogo}
-              source={{
-                uri: `https://assets-netstorage.groww.in/stock-assets/logos/INE155A01022.png`,
-              }}
-            />
-            <View style={styles.headTitle}>
-              <Text style={styles.symbol}>Tata Motors</Text>
-              <Text style={styles.companyName}>Tata Motors</Text>
+        <View style={styles.price}>
+          {currentPrice && (
+            <Text style={styles.currentPrice}>₹ {currentPrice}</Text>
+          )}
+          {dayChange && (
+            <Text
+              style={{
+                ...styles.changePrice,
+                color: percentChange < 0 ? 'green' : 'red',
+              }}>
+              {`${dayChange} (${percentChange}%)`}
+            </Text>
+          )}
+        </View>
+        <View
+          style={{
+            marginBottom: 12,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <View>
+            {/* <VictoryChart theme={victoryTheme} height={240} width={460}> */}
+            {finalData && (
+              // <VictoryVoronoiContainer labels={() => `Apple`}>
+              <PriceChart data={finalData} />
+              // </VictoryVoronoiContainer>
+            )}
+            {/* </VictoryChart> */}
+          </View>
+        </View>
+        <View>
+          <Text style={styles.sectionName}>Performance</Text>
+          <View style={{marginBottom: 18}}>
+            <View style={styles.lowHigh}>
+              <View style={styles.lowHighLowContainer}>
+                <Text style={styles.lowHighLow}>Low Today</Text>
+                {dayLow && <Text style={styles.lowHighLow}>₹ {dayLow}</Text>}
+              </View>
+              <View style={styles.lowHighHighContainer}>
+                <Text style={styles.lowHighHigh}>High Today</Text>
+                {dayHigh && <Text style={styles.lowHighHigh}>₹ {dayHigh}</Text>}
+              </View>
             </View>
-          </View>
-          <View style={styles.price}>
-            {currentPrice && (
-              <Text style={styles.currentPrice}>₹ {currentPrice}</Text>
-            )}
-            {dayChange && (
-              <Text
-                style={{
-                  ...styles.changePrice,
-                  color: percentChange < 0 ? 'green' : 'red',
-                }}>
-                {`${dayChange} (${percentChange}%)`}
-              </Text>
-            )}
-          </View>
-          <View
-            style={{
-              marginVertical: 12,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            {/* <View>
-              <VictoryChart theme={victoryTheme} height={240} width={460}>
-              {finalData && (
-                <VictoryVoronoiContainer labels={() => `Apple`}>
-                <PriceChart data={finalData} />
-                </VictoryVoronoiContainer>
-              )}
-              </VictoryChart>
-            </View> */}
+            <View style={styles.priceBar}></View>
           </View>
           <View>
-            <Text style={styles.sectionName}>Performance</Text>
-            <View>
-              <View style={styles.lowHigh}>
-                <View style={styles.lowHighLowContainer}>
-                  <Text style={styles.lowHighLow}>Low Today</Text>
-                  {dayLow && <Text style={styles.lowHighLow}>₹ {dayLow}</Text>}
-                </View>
-                <View style={styles.lowHighHighContainer}>
-                  <Text style={styles.lowHighHigh}>High Today</Text>
-                  {dayHigh && (
-                    <Text style={styles.lowHighHigh}>₹ {dayHigh}</Text>
-                  )}
-                </View>
+            <View style={styles.lowHigh}>
+              <View style={styles.lowHighLowContainer}>
+                <Text style={styles.lowHighLow}>52 Weeks Low</Text>
+                {dayLow && <Text style={styles.lowHighLow}>₹ {dayLow}</Text>}
               </View>
-              <View style={styles.priceBar}></View>
-            </View>
-            <View>
-              <View style={styles.lowHigh}>
-                <View style={styles.lowHighLowContainer}>
-                  <Text style={styles.lowHighLow}>Low Today</Text>
-                  {dayLow && <Text style={styles.lowHighLow}>₹ {dayLow}</Text>}
-                </View>
-                <View style={styles.lowHighHighContainer}>
-                  <Text style={styles.lowHighHigh}>High Today</Text>
-                  {dayHigh && (
-                    <Text style={styles.lowHighHigh}>₹ {dayHigh}</Text>
-                  )}
-                </View>
+              <View style={styles.lowHighHighContainer}>
+                <Text style={styles.lowHighHigh}>52 Weeks High</Text>
+                {dayHigh && <Text style={styles.lowHighHigh}>₹ {dayHigh}</Text>}
               </View>
-              <View style={styles.priceBar}></View>
             </View>
+            <View style={styles.priceBar}></View>
+          </View>
 
-            <View style={styles.performanceBottom}>
-              <View>
-                {open && <Text style={styles.sectionPrice}>₹ {open}</Text>}
-                <Text style={styles.sectionTitle}>Open Price</Text>
-              </View>
-              <View>
-                {prevClose && (
-                  <Text style={styles.sectionPrice}>₹ {prevClose}</Text>
-                )}
-                <Text style={styles.sectionTitle}>Prev. Close</Text>
-              </View>
-              <View>
-                {vol && <Text style={styles.sectionPrice}>{vol}</Text>}
-                <Text style={styles.sectionTitle}>Volume Traded</Text>
-              </View>
+          <View style={styles.performanceBottom}>
+            <View>
+              {open && <Text style={styles.sectionPrice}>₹ {open}</Text>}
+              <Text style={styles.sectionTitle}>Open Price</Text>
+            </View>
+            <View>
+              {prevClose && (
+                <Text style={styles.sectionPrice}>₹ {prevClose}</Text>
+              )}
+              <Text style={styles.sectionTitle}>Prev. Close</Text>
+            </View>
+            <View>
+              {vol && <Text style={styles.sectionPrice}>{vol}</Text>}
+              <Text style={styles.sectionTitle}>Volume Traded</Text>
             </View>
           </View>
-        </ScrollView>
-        <View style={styles.buyButtonContainer}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Stock Order')}
-            style={styles.buyButton}>
-            <Text style={styles.buyText}>BUY</Text>
-          </TouchableOpacity>
         </View>
-      </Safeview>
-    </View>
+      </ScrollView>
+      <View style={styles.buyButtonContainer}>
+        <StartButton onPress={() => navigation.navigate('Practice')} />
+      </View>
+    </Safeview>
   );
 };
 
@@ -213,30 +195,9 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
   },
-  buyButton: {
-    height: 60,
-    backgroundColor: '#00d09c',
-    width: '100%',
-    borderRadius: 12,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   buyButtonContainer: {
-    position: 'absolute',
-    bottom: 0,
-    padding: 12,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
     borderTopWidth: 4,
     borderColor: '#f5f5f5',
-  },
-  buyText: {
-    fontSize: 18,
-    color: 'white',
-    fontWeight: '600',
   },
   changePrice: {
     fontSize: 10,
@@ -251,6 +212,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 12,
     flex: 1,
+    paddingHorizontal: 16,
   },
   companyLogo: {
     height: 50,
@@ -278,6 +240,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 12,
   },
   lowHighHigh: {
     color: 'grey',
@@ -316,6 +279,9 @@ const styles = StyleSheet.create({
   },
   sectionPrice: {
     textAlign: 'center',
+  },
+  stock: {
+    flex: 1,
   },
   symbol: {
     color: 'grey',

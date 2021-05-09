@@ -1,14 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {
-  VictoryScatter,
-  VictoryLine,
-  VictoryChart,
-  VictoryAxis,
-  VictoryVoronoiContainer,
-} from 'victory-native';
-import {colors} from '../constants';
-import victoryTheme from '../styles/victoryTheme';
+import {VictoryLine} from 'victory-native';
+
+import victoryTheme from './styles/victoryTheme';
 
 const PriceChart = ({data}) => {
   return (
@@ -19,7 +13,7 @@ const PriceChart = ({data}) => {
         width={460}
         style={{
           data: {
-            stroke: colors.profit,
+            stroke: 'green',
           },
           parent: {
             border: '1px solid #ccc',
