@@ -7,11 +7,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Modal from 'react-native-modal';
 
 import Safeview from '../../../common/safeview';
 import {icons} from '../../../../constants';
 import PriceChart from './price-chart';
 import StartButton from '../../startButton';
+import BuyPopup from './buy-popup';
 const BuyStock = ({navigation, route}) => {
   const [currentPrice, setCurrentPrice] = useState();
   const [dayChange, setDayChange] = useState();
@@ -31,6 +33,7 @@ const BuyStock = ({navigation, route}) => {
   const [chartXData, setChartXData] = useState();
   const [chartYData, setChartYData] = useState();
   const [finalData, setFinalData] = useState();
+  const [showModal, setShowModal] = useState(false);
 
   const getData = async () => {
     const data = await fetch(
@@ -85,6 +88,9 @@ const BuyStock = ({navigation, route}) => {
   return (
     // copying from groww
     <Safeview style={styles.container}>
+      <Modal isVisible={showModal}>
+        <BuyPopup />
+      </Modal>
       <View style={styles.navigatior}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image source={icons.back} style={styles.backIcon} />
@@ -182,7 +188,7 @@ const BuyStock = ({navigation, route}) => {
         </View>
       </ScrollView>
       <View style={styles.buyButtonContainer}>
-        <StartButton onPress={() => navigation.navigate('Practice')} />
+        <StartButton onPress={() => setShowModal(!showModal)} />
       </View>
     </Safeview>
   );
