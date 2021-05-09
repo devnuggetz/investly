@@ -1,11 +1,14 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import TaskCard from './taskCard';
+import {practiceData} from '../../data/practice';
 
-const Section = () => {
+const Section = ({level}) => {
+  const tasks = practiceData[level];
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Easy</Text>
+      <Text style={styles.title}>{level}</Text>
       <Text style={styles.subTitle}>
         These are the most basic actions you must practice before opening your
         demat account.
@@ -14,10 +17,9 @@ const Section = () => {
         horizontal
         style={styles.tasks}
         showsHorizontalScrollIndicator={false}>
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
+        {tasks.map(item => {
+          return <TaskCard key={item.taskId} task={item} />;
+        })}
       </ScrollView>
     </View>
   );

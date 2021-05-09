@@ -11,9 +11,9 @@ const Practice = () => {
         Practice the following tasks to gain real experience of the stock market
       </Text>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Section />
-        <Section />
-        <Section />
+        <Section level="student" />
+        <Section level="player" />
+        <Section level="master" />
       </ScrollView>
     </Safeview>
   );

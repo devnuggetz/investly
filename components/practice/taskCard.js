@@ -3,16 +3,17 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {COLORS, images} from '../../constants';
 
-const TaskCard = () => {
+const TaskCard = ({task}) => {
   return (
     <TouchableOpacity>
       <View style={styles.container}>
         <View style={styles.top}>
-          <Text style={styles.title}>Place a limit order.</Text>
+          <Text style={styles.title}>{task.title}</Text>
+          <Text>{task.points}</Text>
         </View>
         <View style={styles.bottom}>
           <Image
-            source={images.thinkImage}
+            source={{uri: task.image}}
             style={styles.banner}
             resizeMode="contain"
           />
@@ -27,11 +28,11 @@ export default TaskCard;
 const styles = StyleSheet.create({
   banner: {
     height: '90%',
-    width: '80%',
+    width: '90%',
   },
   bottom: {
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    alignItems: 'flex-end',
+    width: '100%',
   },
   container: {
     backgroundColor: COLORS.secondary,
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
   },
   top: {
     justifyContent: 'flex-start',
-    // alignItems: 'flex-start',
+    // aligntasks: 'flex-start',
     width: '100%',
   },
 });
