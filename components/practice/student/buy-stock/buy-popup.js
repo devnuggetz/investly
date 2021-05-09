@@ -12,12 +12,12 @@ import {icons} from '../../../../constants';
 import StartButton from '../../startButton';
 import Option from './option';
 
-const BuyPopup = ({}) => {
+const BuyPopup = ({handleClose}) => {
   return (
     <View style={styles.modal}>
       <View style={styles.top}>
         <Text style={styles.title}>Tata Motors</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleClose}>
           <Image
             source={icons.close}
             resizeMode="contain"

@@ -17,11 +17,6 @@ import BuyPopup from './buy-popup';
 const BuyStock = ({navigation, route}) => {
   const [currentPrice, setCurrentPrice] = useState();
   const [dayChange, setDayChange] = useState();
-  const [weekChange, setWeekChange] = useState();
-  const [monthChange, setMonthChange] = useState();
-  const [yearChange, setYearChange] = useState();
-  const [bidPrice, setBidPrice] = useState();
-  const [offerPrice, setOfferPrice] = useState();
   const [high52, setHigh52] = useState();
   const [low52, setLow52] = useState();
   const [open, setOpen] = useState();
@@ -30,11 +25,12 @@ const BuyStock = ({navigation, route}) => {
   const [dayLow, setDayLow] = useState();
   const [vol, setVol] = useState();
   const [percentChange, setPercentChange] = useState();
-  const [chartXData, setChartXData] = useState();
-  const [chartYData, setChartYData] = useState();
   const [finalData, setFinalData] = useState();
   const [showModal, setShowModal] = useState(false);
 
+  const handleClose = () => {
+    setShowModal(!showModal);
+  };
   const getData = async () => {
     const data = await fetch(
       `https://priceapi.moneycontrol.com/pricefeed/nse/equitycash/TEL`,
@@ -42,11 +38,8 @@ const BuyStock = ({navigation, route}) => {
     const res = await data.json();
     setCurrentPrice(res.data.pricecurrent);
     setDayChange(res.data.pricechange);
-    setWeekChange(res.data.cl1wPerChange);
-    setMonthChange(res.data.cl1mPerChange);
-    setYearChange(res.data.cl1yPerChange);
-    setBidPrice(res.data.BIDP);
-    setOfferPrice(res.data.OFFERP);
+    setHigh52(res.data[`52H`]);
+    setLow52(res.data[`52L`]);
     setOpen(res.data.OPN);
     setPrevClose(res.data.priceprevclose);
     setDayHigh(res.data.HP);
@@ -59,8 +52,6 @@ const BuyStock = ({navigation, route}) => {
       `https://query1.finance.yahoo.com/v8/finance/chart/TATAMOTORS.NS?region=IN&lang=en-IN&includePrePost=false&interval=2m&useYfid=true&range=1d&corsDomain=in.finance.yahoo.com&.tsrc=finance`,
     );
     const data = await res.json();
-    // console.log(data.chart.result[0].indicators.quote[0].open);
-    // console.log(data.chart.result[0].timestamp.length);
     const chartXData = data.chart.result[0].timestamp.map(
       item => (item % 1614656700) / 300,
     );
@@ -68,8 +59,6 @@ const BuyStock = ({navigation, route}) => {
       parseFloat(item).toFixed(2),
     );
 
-    setChartYData(chartYData);
-    setChartXData(chartXData);
     const length = data.chart.result[0].indicators.quote[0].open.length;
     const tempData = [];
     for (i = 0; i < length; i++) {
@@ -89,7 +78,7 @@ const BuyStock = ({navigation, route}) => {
     // copying from groww
     <Safeview style={styles.container}>
       <Modal isVisible={showModal}>
-        <BuyPopup />
+        <BuyPopup handleClose={handleClose} />
       </Modal>
       <View style={styles.navigatior}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -130,15 +119,7 @@ const BuyStock = ({navigation, route}) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <View>
-            {/* <VictoryChart theme={victoryTheme} height={240} width={460}> */}
-            {finalData && (
-              // <VictoryVoronoiContainer labels={() => `Apple`}>
-              <PriceChart data={finalData} />
-              // </VictoryVoronoiContainer>
-            )}
-            {/* </VictoryChart> */}
-          </View>
+          <View>{finalData && <PriceChart data={finalData} />}</View>
         </View>
         <View>
           <Text style={styles.sectionName}>Performance</Text>
@@ -159,11 +140,11 @@ const BuyStock = ({navigation, route}) => {
             <View style={styles.lowHigh}>
               <View style={styles.lowHighLowContainer}>
                 <Text style={styles.lowHighLow}>52 Weeks Low</Text>
-                {dayLow && <Text style={styles.lowHighLow}>₹ {dayLow}</Text>}
+                {dayLow && <Text style={styles.lowHighLow}>₹ {low52}</Text>}
               </View>
               <View style={styles.lowHighHighContainer}>
                 <Text style={styles.lowHighHigh}>52 Weeks High</Text>
-                {dayHigh && <Text style={styles.lowHighHigh}>₹ {dayHigh}</Text>}
+                {dayHigh && <Text style={styles.lowHighHigh}>₹ {high52}</Text>}
               </View>
             </View>
             <View style={styles.priceBar}></View>
@@ -188,7 +169,7 @@ const BuyStock = ({navigation, route}) => {
         </View>
       </ScrollView>
       <View style={styles.buyButtonContainer}>
-        <StartButton onPress={() => setShowModal(!showModal)} />
+        <StartButton text="BUY" onPress={() => setShowModal(!showModal)} />
       </View>
     </Safeview>
   );
@@ -205,15 +186,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 4,
     borderColor: '#f5f5f5',
   },
-  changePrice: {
-    fontSize: 10,
-    marginVertical: 6,
-  },
-  chart: {
-    height: 200,
-    width: 400,
-    resizeMode: 'contain',
-  },
+
   container: {
     backgroundColor: 'white',
     padding: 12,
@@ -238,10 +211,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginVertical: 6,
   },
-  headTitle: {
-    display: 'flex',
-    marginLeft: 6,
-  },
+
   lowHigh: {
     display: 'flex',
     flexDirection: 'row',
