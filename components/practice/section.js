@@ -8,7 +8,7 @@ const Section = ({level}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{level}</Text>
+      <Text style={styles.title}>{level.toUpperCase()}</Text>
       <Text style={styles.subTitle}>
         These are the most basic actions you must practice before opening your
         demat account.

@@ -8,6 +8,7 @@ import {icons, COLORS} from '../../constants';
 
 import LessonStack from '../lessons/lesson-stack';
 import Practice from '../../screens/practice';
+import PracticeStack from '../practice/practice-stack';
 const Tab = createBottomTabNavigator();
 
 const tabOptions = {
@@ -86,7 +87,7 @@ const BottomTabs = () => {
         },
       })}>
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Practice" component={Practice} />
+      <Tab.Screen name="Practice" component={PracticeStack} />
       <Tab.Screen name="Bookmarks" component={Bookmarks} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>

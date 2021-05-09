@@ -4,6 +4,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {COLORS, images} from '../../constants';
 
 const TaskCard = ({task}) => {
+  const title = task.title;
   return (
     <TouchableOpacity>
       <View style={styles.container}>
